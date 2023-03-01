@@ -14,7 +14,7 @@ import Layout from '@/layout'
 */ 
 Vue.use(Router)
 
-export const constantRoutes = [
+export const constantRoutes = [ 
     {
         path:'/redirct',
         component:Layout,
@@ -25,6 +25,11 @@ export const constantRoutes = [
                 component:()=>import('@/views/redirect/index')
             }
         ]
+    },
+    {
+        path: '/login',
+        component: () => import('@/views/login/index'),
+        hidden: true
     }
 ]
 /**
@@ -32,7 +37,11 @@ export const constantRoutes = [
  *  hash 通过将#后边的路径进行hash处理 在本地寻找文件下寻找路由 不美观 但是不会出现服务器配置的404错误 不过一般也需要自己配置一个404页面
  */
 const createRouter = () => new Router({
-    mode:'history',
-    scrollBehavior: ()=>({ y:100 }),
-    routes
+    // mode:'history',
+    scrollBehavior: ()=>({ y:0 }),
+    constantRoutes
 })
+
+const router = createRouter()
+
+export default router
